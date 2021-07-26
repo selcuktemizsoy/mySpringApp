@@ -3,9 +3,12 @@ package com.st.Demo.controller;
 
 import com.st.Demo.model.Student;
 import com.st.Demo.service.StudentService;
+
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+
+
 
 @RestController
 public class StudentController {
@@ -18,25 +21,26 @@ public class StudentController {
         this.studentService = studentService;
     }
 
-    @GetMapping
-    @RequestMapping(path = "first/v1/student")
-    public Student getStudent(){
-        return studentService.getStudent();
+    @GetMapping(path = "first/v1/student/{id}")
+    public ResponseEntity<Object> getStudent(@PathVariable("id") long id ){
+        return studentService.getStudent(id);
     }
 
 
-    @GetMapping
-    @RequestMapping(path = "first/v1/allStudents")
-    public List<Student> getListOfStudents(){
-        System.out.println(studentService.getStudents());
+    @GetMapping(path = "first/v1/allStudents")
+    public ResponseEntity<Object> getListOfStudents(){
         return studentService.getStudents();
     }
 
-    @PostMapping
-    @RequestMapping(path = "first/v1/create")
-    public String createStudent(@RequestBody Student student){
-        studentService.createStudent(student);
-        return "vadaaa";
+
+    @PostMapping(path = "first/v1/create")
+    public ResponseEntity<Object> createStudent(@RequestBody Student student){
+        return  studentService.createStudent(student);
+    }
+
+    @DeleteMapping(path = "first/v1/delete/{id}")
+    public ResponseEntity<Object> deleteStudent(@PathVariable("id") long id){
+        return studentService.deleteStudent(id);
     }
 
 

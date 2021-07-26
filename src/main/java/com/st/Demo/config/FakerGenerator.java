@@ -10,7 +10,7 @@ public class FakerGenerator {
 
     public static Student getRandomStudent(){
         Faker faker = new Faker();
-        return new Student(faker.name().fullName(), faker.educator().university());
+        return new Student(faker.name().fullName(), faker.educator().university(), faker.internet().emailAddress());
     }
 
 
