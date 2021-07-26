@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 
 @RestController
+@RequestMapping(path = "first/v1/student" )
 public class StudentController {
 
 
@@ -21,24 +22,24 @@ public class StudentController {
         this.studentService = studentService;
     }
 
-    @GetMapping(path = "first/v1/student/{id}")
+    @GetMapping(path = "/{id}")
     public ResponseEntity<Object> getStudent(@PathVariable("id") long id ){
         return studentService.getStudent(id);
     }
 
 
-    @GetMapping(path = "first/v1/allStudents")
+    @GetMapping(path = "/getAll")
     public ResponseEntity<Object> getListOfStudents(){
         return studentService.getStudents();
     }
 
 
-    @PostMapping(path = "first/v1/create")
+    @PostMapping(path = "/create")
     public ResponseEntity<Object> createStudent(@RequestBody Student student){
         return  studentService.createStudent(student);
     }
 
-    @DeleteMapping(path = "first/v1/delete/{id}")
+    @DeleteMapping(path = "/delete/{id}")
     public ResponseEntity<Object> deleteStudent(@PathVariable("id") long id){
         return studentService.deleteStudent(id);
     }
